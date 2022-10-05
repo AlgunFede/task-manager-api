@@ -33,6 +33,7 @@ router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) 
     res.status(400).send({ error: error.message })
 });
 
+// Delete Avatar
 router.delete('/users/me/avatar', auth, upload.single(), async (req, res) => {
     
     req.user.avatar = undefined;
@@ -42,6 +43,7 @@ router.delete('/users/me/avatar', auth, upload.single(), async (req, res) => {
     res.status(400).send({ error: error.message })
 });
 
+// Get Avatar
 router.get('/users/:id/avatar', async (req, res) => {
     
     try {
@@ -58,7 +60,7 @@ router.get('/users/:id/avatar', async (req, res) => {
 })
 
 // Create user
-router.post('/users/me', async (req, res) => {
+router.post('/users', async (req, res) => {
     const user = new User(req.body)
     
     try {
@@ -113,7 +115,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
     }
 })
 
-// Getting all users
+// Getting user profile
 router.get('/users/me', auth, async (req, res) => {
     
     res.send(req.user)
@@ -157,7 +159,7 @@ router.delete('/users/me', auth, async (req, res) => {
     const _id = req.user._id;
 
     try {
-        req.user.remove()
+        await req.user.remove()
         res.send(req.user)
 
     } catch(e) {
