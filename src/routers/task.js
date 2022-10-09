@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router();
 const Task = require('../models/task');
 const auth = require('../middlewares/auth');
-const { translateAliases } = require('../models/task');
 
 // Handleing task requests 
 
@@ -14,7 +13,7 @@ router.post('/task', auth, async (req, res) => {
     }) 
     try {
         await newTsk.save()
-        res.send(newTsk)
+        res.status(201).send(newTsk)
     } catch(e) {
         res.status(400).send(e)
     }
