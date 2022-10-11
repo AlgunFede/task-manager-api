@@ -6,9 +6,9 @@ const taskSchema = mongoose.Schema({
         required: true,
         trim: true  
     },
-    completed: {
-        type: Boolean,
-        default: false
+    status: {
+        type: String,
+        default: 'Not Started'
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,

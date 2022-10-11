@@ -5,17 +5,19 @@ const auth = require('../middlewares/auth');
 
 // Handleing task requests 
 
-// Saveing new task
+// Saving new task
 router.post('/task', auth, async (req, res) => {
+
     const newTsk = new Task({
         ...req.body,
         owner: req.user._id
     }) 
+    console.log(newTsk)
     try {
         await newTsk.save()
         res.status(201).send(newTsk)
     } catch(e) {
-        res.status(400).send(e)
+        res.status(400).send()
     }
 
 })
@@ -114,6 +116,7 @@ router.delete('/task/:id', auth, async (req, res) => {
         if(!task) {
             return res.status(404).send({error: 'Task doesn\'t exist'})
         }
+        await task.remove()
         res.send(task)
         
     } catch(e) {
