@@ -12,7 +12,6 @@ router.post('/task', auth, async (req, res) => {
         ...req.body,
         owner: req.user._id
     }) 
-    console.log(newTsk)
     try {
         await newTsk.save()
         res.status(201).send(newTsk)
