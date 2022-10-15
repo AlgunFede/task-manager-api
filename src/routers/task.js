@@ -71,8 +71,8 @@ router.get('/task/:id', auth, async (req, res) => {
 // Edit existing resource
 
 router.patch('/task/:id', auth, async (req, res) => {
+
     const _id = req.params.id;
-    const validation = { new: true, runValidators: true};
 
     const allowUpdates = ['description', 'completed'];
     const changes = Object.keys(req.body)

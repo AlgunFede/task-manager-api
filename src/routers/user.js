@@ -74,18 +74,15 @@ router.post('/users', async (req, res) => {
 
 // Login user
 router.post('/users/login', async (req, res) => {
-
     const email = req.body.email;
     const password = req.body.password;
     try {
         const user = await User.findByCredentials(email, password);
         const token = await user.generateAuthToken();
         res.send({ user, token })
-
     } catch(e) {
         res.status(400).send({ error: "User not found" });
     } 
-
 })
 
 // Logout user
