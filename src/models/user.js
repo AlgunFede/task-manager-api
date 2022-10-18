@@ -29,7 +29,7 @@ const userSchema = mongoose.Schema({
         unique: true,
         validate(value) {
             if(!validator.isEmail(value)) {
-                throw new Error('Incorrect format email')
+                throw new Error('Incorrect email format')
             }
         }
     },
@@ -41,6 +41,9 @@ const userSchema = mongoose.Schema({
                 throw new Error('Age must be positive')
             }
         }
+    },
+    description: {
+        type: String
     },
     tokens: [{
         token: {

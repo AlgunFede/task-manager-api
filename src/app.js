@@ -5,7 +5,12 @@ const taskRouter = require('./routers/task');
 const cors = require('cors')
 
 const app = express();
-app.use(cors())
+app.use(
+    cors({ 
+            origin: "*",
+            credentials: true
+        })
+)
 
 app.use(express.json())
 

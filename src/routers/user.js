@@ -62,7 +62,6 @@ router.get('/users/:id/avatar', async (req, res) => {
 // Create user
 router.post('/users', async (req, res) => {
     const user = new User(req.body)
-    
     try {
         await user.save();
         const token = await user.generateAuthToken();
