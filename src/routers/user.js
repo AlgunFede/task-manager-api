@@ -80,7 +80,7 @@ router.post('/users/login', async (req, res) => {
         const token = await user.generateAuthToken();
         res.send({ user, token })
     } catch(e) {
-        res.status(400).send({ error: "User not found" });
+        res.status(400).send({ error: "User not found, test once again" });
     } 
 })
 
@@ -152,7 +152,6 @@ router.patch('/users/me', auth, async (req, res) => {
 
 router.delete('/users/me', auth, async (req, res) => {
     const _id = req.user._id;
-
     try {
         await req.user.remove()
         res.send(req.user)
